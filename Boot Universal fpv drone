@@ -1,0 +1,34 @@
+--[[
+Universal Fpv Drone
+
+▀█████████▄  ▄██   ▄           ▄████████    ▄████████ ███    █▄  
+  ███    ███ ███   ██▄        ███    ███   ███    ███ ███    ███ 
+  ███    ███ ███▄▄▄███        ███    ███   ███    █▀  ███    ███ 
+ ▄███▄▄▄██▀  ▀▀▀▀▀▀███        ███    ███   ███        ███    ███ 
+▀▀███▀▀▀██▄  ▄██   ███      ▀███████████ ▀███████████ ███    ███ 
+  ███    ██▄ ███   ███        ███    ███          ███ ███    ███ 
+  ███    ███ ███   ███        ███    ███    ▄█    ███ ███    ███ 
+▄█████████▀   ▀█████▀         ███    █▀   ▄████████▀  ████████▀  
+                                                                 
+@thereal_asu
+
+server discord
+https://discord.gg/zrAB2m5gvz                                  
+]]
+
+--Configuration
+getgenv().Active = true
+getgenv().Deadzone = 0.1
+getgenv().Acceleration = 2
+getgenv().Deceleration = 1
+getgenv().Sensibility = 3.2
+getgenv().Maxspeed = 150
+getgenv().Collision = true --drone collision
+
+--[[
+ Info:
+ 
+ - it works well but I need to make it more stable
+ - need xbox controller, don't know if other controllers work
+ - does not work with keyboard
+]]

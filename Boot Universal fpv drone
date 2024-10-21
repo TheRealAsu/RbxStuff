@@ -21,10 +21,11 @@ getgenv().Active = true
 getgenv().Deadzone = 0.1
 getgenv().Acceleration = 2
 getgenv().Deceleration = 1
-getgenv().Sensibility = 3.2
+getgenv().Sensibility = 2.1
 getgenv().Maxspeed = 150
 getgenv().Collision = true --drone collision
 
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TheRealAsu/RbxStuff/refs/heads/main/Unviersal%20Fpv%20drone'))()
 --[[
  Info:
  

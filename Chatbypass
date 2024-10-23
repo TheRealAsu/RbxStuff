@@ -1,0 +1,80 @@
+--rbx chat bypass
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Untilted Chat Bypasser", HidePremium = false, SaveConfig = false, ConfigFolder = "nuhuh"})
+
+local TextChatService = game:GetService("TextChatService")
+local yessir
+
+local function chatMessage(str)
+    str = tostring(str)
+    if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+        TextChatService.TextChannels.RBXGeneral:SendAsync(str)
+    else
+        ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(str, "All")
+    end
+end
+
+function uncensor(text)
+
+    local bypasscore = {
+        A = "Ạ", B = "Ḅ", C = "Ç", D = "Ḍ", E = "Ẹ", F = "Ḟ", G = "Ḡ",
+        H = "Ḥ", I = "Ị", J = "Ĵ", K = "Ḳ", L = "Ḷ", M = "Ṃ", N = "Ṇ",
+        O = "Ọ", P = "Ṗ", Q = "Q̣", R = "Ṛ", S = "Ṣ", T = "Ṭ", U = "Ụ",
+        V = "Ṿ", W = "Ẉ", X = "X̣", Y = "Ỵ", Z = "Ẓ",
+        a = "ạ", b = "ḅ", c = "ç", d = "ḍ", e = "ẹ", f = "ḟ", g = "ḡ",
+        h = "ḥ", i = "ị", j = "j̣", k = "ḳ", l = "ḷ", m = "ṃ", n = "ṇ",
+        o = "ọ", p = "ṗ", q = "q̣", r = "ṛ", s = "ṣ", t = "ṭ", u = "ụ",
+        v = "ṿ", w = "ẉ", x = "x̣", y = "ỵ", z = "ẓ"
+    }
+
+    local hellyea = ""
+
+    for i = 1, #text do
+        local char = text:sub(i, i)
+        if bypasscore[char] then
+            hellyea = hellyea .. bypasscore[char]
+        else
+            hellyea = hellyea .. char
+        end
+    end
+
+    return hellyea
+end
+
+local Message = Window:MakeTab({
+	Name = "Message",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Message:AddTextbox({
+	Name = "write here: (155 char. max)",
+	Default = "hello",
+	TextDisappear = true,
+	Callback = function(sentence)
+        yessir = sentence
+	end	  
+})
+
+Message:AddButton({
+	Name = "Send",
+	Callback = function()
+        chatMessage(uncensor(yessir))
+  	end    
+})
+
+Message:AddButton({
+	Name = "Fix chat",
+	Callback = function()
+        chatMessage("ABCEabce1234()•%$")
+  	end    
+})
+
+Message:AddButton({
+	Name = "Delete Script",
+	Callback = function()
+        OrionLib:Destroy()
+  	end    
+})
+
+OrionLib:Init()

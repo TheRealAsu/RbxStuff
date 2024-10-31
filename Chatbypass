@@ -1,5 +1,5 @@
 --configs
-local HK = getgenv().Hotkey
+local HK = Enum.KeyCode[getgenv().Hotkey]
 
 local SC = Instance.new("ScreenGui")
 local TEXT = Instance.new("TextBox")
@@ -103,15 +103,15 @@ local function core()
 		end
 	end
 	
-	UserInputService.InputBegan:Connect(function(input, gameProcessed)
-		if input.KeyCode == Enum.KeyCode.HK and nugget and not gameProcessed then
-			if screenGui.Enabled then
-				animateTextBox(false)
-			else
-				animateTextBox(true)
-			end
-		end
-	end)
+    UserInputService.InputBegan:Connect(function(input, gameProcessed)
+        if input.KeyCode == HK and nugget and not gameProcessed then
+            if screenGui.Enabled then
+                animateTextBox(false)
+            else
+                animateTextBox(true)
+            end
+        end
+    end)
 	
 	textBox.FocusLost:Connect(function(enterPressed)
 		if enterPressed and nugget then

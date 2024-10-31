@@ -1,6 +1,7 @@
 --configs
 local HK = Enum.KeyCode[getgenv().Hotkey]
 
+-- main
 local SC = Instance.new("ScreenGui")
 local TEXT = Instance.new("TextBox")
 local UICorner = Instance.new("UICorner")
@@ -32,17 +33,15 @@ local function core()
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 	local UserInputService = game:GetService("UserInputService")
 	local TweenService = game:GetService("TweenService")
-	
+
 	local textBox = script.Parent
 	local screenGui = textBox.Parent
-	local targetSize = UDim2.new(0.271, 0, 0.031, 0) 
-	local targetTransparency = 0.5 
 	local nugget = true
 	screenGui.Enabled = false
-	
-	textBox.AnchorPoint = Vector2.new(0.5, 0) 
+
+	textBox.AnchorPoint = Vector2.new(0.5, 0)
 	textBox.Position = UDim2.new(0.5, 0, 0.1, 0)
-	
+
 	local function chatMessage(str)
 		str = tostring(str)
 		if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
@@ -51,10 +50,7 @@ local function core()
 			ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(str, "All")
 		end
 	end
-	
-	local function fix()
-		chatMessage("ABCEabce1234()•%$")
-	end
+
 	local function uncensor(text)
 		local bypasscore = {
 			A = "Ạ", B = "Ḅ", C = "Ç", D = "Ḍ", E = "Ẹ", F = "Ḟ", G = "Ḡ",
@@ -66,7 +62,7 @@ local function core()
 			o = "ọ", p = "ṗ", q = "q̣", r = "ṛ", s = "ṣ", t = "ṭ", u = "ụ",
 			v = "ṿ", w = "ẉ", x = "x̣", y = "ỵ", z = "ẓ"
 		}
-	
+
 		local hellyea = ""
 		for i = 1, #text do
 			local char = text:sub(i, i)
@@ -74,19 +70,19 @@ local function core()
 		end
 		return hellyea
 	end
-	
+
 	local function animateTextBox(show)
 		if show then
 			screenGui.Enabled = true
 			textBox.Size = UDim2.new(0, 0, 0, 0)
 			textBox.BackgroundTransparency = 1
-	
+
 			local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Circular, Enum.EasingDirection.Out)
 			local tween = TweenService:Create(textBox, tweenInfo, {
-				Size = targetSize,
-				BackgroundTransparency = targetTransparency
+				Size = UDim2.new(0.270889074, 0, 0.0308242235, 0),
+				BackgroundTransparency = 0.5
 			})
-	
+
 			tween:Play()
 			tween.Completed:Wait()
 			textBox:CaptureFocus()
@@ -96,23 +92,23 @@ local function core()
 				Size = UDim2.new(0, 0, 0, 0),
 				BackgroundTransparency = 1
 			})
-	
+
 			tween:Play()
 			tween.Completed:Wait()
 			screenGui.Enabled = false
 		end
 	end
-	
-    UserInputService.InputBegan:Connect(function(input, gameProcessed)
-        if input.KeyCode == HK and nugget and not gameProcessed then
-            if screenGui.Enabled then
-                animateTextBox(false)
-            else
-                animateTextBox(true)
-            end
-        end
-    end)
-	
+
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if input.KeyCode == HK and nugget and not gameProcessed then
+			if screenGui.Enabled then
+				animateTextBox(false)
+			else
+				animateTextBox(true)
+			end
+		end
+	end)
+
 	textBox.FocusLost:Connect(function(enterPressed)
 		if enterPressed and nugget then
 			local inputText = textBox.Text
@@ -123,18 +119,18 @@ local function core()
 					textBox.Text = ""
 					return
 				elseif inputText == "/fix" or inputText == ";fix" then
-					fix()
+					chatMessage("ABCEabce1234()•%$")
 					textBox.Text = ""
 					animateTextBox(false)
 					return
 				end
 			end
-	        -- made by thereal_asu
+                    -- made by thereal_asu
 			local censoredText = uncensor(inputText)
 			chatMessage(censoredText)
 			textBox.Text = ""
 			animateTextBox(false)
-		else -- this else is magic
+		else
 			animateTextBox(false)
 		end
 	end)

@@ -1,4 +1,5 @@
 -- configs
+getgenv().Hotkey = "Insert"
 local HK = Enum.KeyCode[getgenv().Hotkey]
 
 -- main
@@ -7,7 +8,7 @@ local TEXT = Instance.new("TextBox")
 local UICorner = Instance.new("UICorner")
 
 SC.Name = "SC"
-SC.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+SC.Parent = game:GetService("CoreGui")
 SC.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 TEXT.Name = "TEXT"

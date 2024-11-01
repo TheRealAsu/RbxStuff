@@ -1,5 +1,4 @@
 -- configs
-getgenv().Hotkey = "Insert"
 local HK = Enum.KeyCode[getgenv().Hotkey]
 
 -- main
